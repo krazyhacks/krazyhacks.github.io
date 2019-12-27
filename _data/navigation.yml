@@ -1,0 +1,63 @@
+main:
+  - title: "About"
+    url: /about
+  - title: "Random"
+    url: /random/
+  - title: "Embedded"
+    url: /embedded/
+  - title: "Cloud"
+    url: /cloud/
+  - title: "Jekyll"
+    url: /jekyll/
+
+pages:
+  - title: Random
+    children:
+      - title: "Stuff"
+        url: /random/
+
+embedded_nav:
+  - title: Embedded
+    children:
+      - title: "Arduino"
+        url: /arduino/
+      - title: "Pi"
+        url: /pi/
+      - title: "hardware"
+        url: /hardware/
+  - title: Projects
+    children:
+      - title: "CNC"
+        url: /cnc/
+
+cloud_nav:
+  - title: Cloud
+    children:
+      - title: "AWS"
+        url: /aws/
+      - title: "iot"
+        url: /iot/
+
+jekyll_nav:
+  - title: Jekyll
+    children:
+      - title: "Installation"
+        url: /jekyll_installation/
+      - title: "Configuration"
+        url: /jekyll_config/
+
+random_nav:
+  - title: Random
+    children:
+      - title: "Docker"
+        url: /random_docker/
+      - title: "git"
+        url: /random_git/
+      - title: "Homebrew"
+        url: /random_homebrew/
+      - title: "Intelij"
+        url: /random_intelij/
+      - title: "Python"
+        url: /random_python/
+      - title: "ssh"
+        url: /random_ssh/
