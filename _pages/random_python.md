@@ -8,7 +8,6 @@ permalink: /random_python/
 sidebar:
    nav: "random_nav"
 ---
-{% include toc %}
 
 ## Python 
 Problem, we have multiple versions of python, each version of python can have different set of module/package versions. Computer OS's come with specific versions, different production stacks may have different setups. How do we manage to test & develop across all flavours using the same development machine?
