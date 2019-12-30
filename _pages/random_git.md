@@ -11,7 +11,10 @@ sidebar:
 {% include toc %}
 
 ### Ammend author of git commits
-Commited changes as the wrong author. Update the very last commit using;
+Commited changes as the wrong author. This happened because the git config wasn't setup correctly and could have
+been avoided.
+
+Update the very last commit using;
    {% highlight bash linenos %} git commit --amend --author"KrazyHacks <hacks.krazy@gmail.com> {% endhighlight %}
 This will update the very last commit with the ``edited`` version, correcting the authors name
 ### Interactive rebase
@@ -70,4 +73,25 @@ git commit --amend --author="KrazyHacks <hacks.krazy@gmail.com>" --no-edit
 git rebase --continue
 warning: git rebase --preserve-merges is deprecated. Use --rebase-merges instead.
 Successfully rebased and updated refs/heads/master.
+{% endhighlight %}
+
+### Git Config
+#### Set name and email
+GIT Configs are either, system, global or local i.e. per repository
+The above 
+{% highlight bash linenos %}# Updates /etc/gitconfig (system wide that affects all user on the same box)
+$ git config --global user.name
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+
+# Updates ~/.gitconfig (Affects all projects used by the specific users i.e. home directory)
+$  git config --global user.name
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+
+# Updates ./git_project_folder/.gitconfig (Affects specific project)
+$  git config --local user.name
+$ git config --local user.name "John Doe"
+$ git config --local user.email johndoe@example.com
+
 {% endhighlight %}
