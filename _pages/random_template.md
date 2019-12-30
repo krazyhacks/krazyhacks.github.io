@@ -8,7 +8,6 @@ permalink: /random_template/
 sidebar:
    nav: "random_nav"
 ---
-{% include toc %}
 
 ## Template 
 ### Template section 

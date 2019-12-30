@@ -8,7 +8,6 @@ permalink: /random_ssh/
 sidebar:
    nav: "random_nav"
 ---
-{% include toc %}
 
 ### SSH Keys and github
 Problem, I have two github accounts, a personal and one specific for work. Haven't found a convenient way to
