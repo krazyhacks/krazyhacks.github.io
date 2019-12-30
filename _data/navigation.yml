@@ -59,5 +59,7 @@ random_nav:
         url: /random_intelij/
       - title: "Python"
         url: /random_python/
+      - title: "Python behave"
+        url: /random_behave/
       - title: "ssh"
         url: /random_ssh/
