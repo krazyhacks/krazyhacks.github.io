@@ -8,7 +8,7 @@ permalink: /random/
 sidebar:
    nav: "random_nav"
 ---
-{% include toc %}
+# {% include toc %}
 
 Random stuff i keep forgetting.
 
