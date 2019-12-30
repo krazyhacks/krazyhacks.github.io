@@ -8,7 +8,6 @@ permalink: /random_homebrew/
 sidebar:
    nav: "random_nav"
 ---
-{% include toc %}
 
 ## Homebrew
 

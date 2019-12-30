@@ -8,7 +8,6 @@ permalink: /random_behave/
 sidebar:
    nav: "random_nav"
 ---
-{% include toc %}
 
 ## Python behave 
 There's already resources on the web. See [behave docs](https://behave.readthedocs.io/en/latest/tutorial.html).

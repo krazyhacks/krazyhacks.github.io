@@ -8,7 +8,6 @@ permalink: /random_git/
 sidebar:
    nav: "random_nav"
 ---
-{% include toc %}
 
 ### Ammend author of git commits
 Commited changes as the wrong author. This happened because the git config wasn't setup correctly and could have
