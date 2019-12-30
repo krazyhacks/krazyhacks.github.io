@@ -34,5 +34,15 @@ edit 0bdc666 adding howto amend authors name in git commits
 # p, pick <commit> = use commit
 # r, reword <commit> = use commit, but edit the commit message
 # e, edit <commit> = use commit, but stop for amending 
+
+Stopped at 0bdc666... adding howto amend authors name in git commits
+You can amend the commit now, with
+
+	git commit --amend 
+
+Once you are satisfied with your changes, run
+
+	git rebase --continue
+
 {% endhighlight %}
 
