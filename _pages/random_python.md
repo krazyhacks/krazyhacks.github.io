@@ -69,6 +69,26 @@ $ source env/bin/activate	# starts the environment
 (env) $ deactivate		# to exit the environment
 ${% endhighlight %}
 
+#### virtualenvwrapper
+[virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) is a set of extensions to the [virtualenv](https://pypi.org/project/virtualenv/) tool. It provides similar features to pyenv-virtualenv.
+{% highlight bash linenos %}$ pip install virtualenvwrapper		# python2
+$ pip3 install virtualenvwrapper	# python3
+# path is different if installed locally not system wide.
+$ which virtualenvwrapper.sh
+/usr/local/bin/virtualenvwrapper.sh
+$ export WORKON_HOME=$HOME/.virtualenvs   # Optional or add it to .bashrc
+$ export PROJECT_HOME=$HOME/projects      # or equivalent
+$ source /usr/local/bin/virtualenvwrapper.sh 	
+$ mkvirtualenv my-new-project
+(my-new-project) $
+(my-new-project) $ deactivate
+$ workon			# list environments
+my-new-project
+my-django-project
+web-scraper
+# Create a virtual env using a specific version of Python
+$ virtualenv -p $(which python3) blog_virtualenv
+${% endhighlight %}
 #### pyvenv
 Between python v3.3 and v3.4 the recommended way to create virtual environments was by using the pyvenv cmd which comes with python3.
 From python v3.6 onwards that recommendation changed to `python3 -m venv blah`
