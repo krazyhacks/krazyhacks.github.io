@@ -17,7 +17,7 @@ This will update the very last commit with the ``edited`` version, correcting th
 ### Interactive rebase
 Updating author's name for multiple commits using interactive rebase
     * Find the first "good"  commit and use its hash for the rebase cmd
-      {% highlight bash linenos %}git rebase -i -p <hash_of_last_good_commit> {% endhighlight %}
+      {% highlight bash linenos %}$ git rebase -i -p <hash_of_last_good_commit> {% endhighlight %}
 This will launch the editor to pick the commits to amend;
       {% highlight bash linenos %}
 pick bf7d674 Initial commit, having written so much without carring about version control and git
@@ -45,4 +45,29 @@ Once you are satisfied with your changes, run
 	git rebase --continue
 
 {% endhighlight %}
+Now amend the author of the commit
+{% highlight bash linenos %}$ git commit --amend --author="KrazyHacks <hacks.krazy@gmail.com>" --no-edit
+[detached HEAD 64f8ec3] adding howto amend authors name in git commits, show commit being edited
+ Author: KrazyHacks <hacks.krazy@gmail.com>
+ Date: Mon Dec 30 09:33:10 2019 +0000
+ 1 file changed, 18 insertions(+), 1 deletion(-) {% endhighlight %}
+Move to the next commit
+{% highlight bash linenos %}$ git rebase --continue
+warning: git rebase --preserve-merges is deprecated. Use --rebase-merges instead.
+Stopped at dc0f5cb... adding howto amend authors name in git commits, show rebase cmd being updated
+You can amend the commit now, with
 
+	git commit --amend 
+
+Once you are satisfied with your changes, run
+
+	git rebase --continue
+git commit --amend --author="KrazyHacks <hacks.krazy@gmail.com>" --no-edit
+[detached HEAD 64f8ec3] adding howto amend authors name in git commits, show commit being edited
+ Author: KrazyHacks <hacks.krazy@gmail.com>
+ Date: Mon Dec 30 09:33:10 2019 +0000
+ 1 file changed, 18 insertions(+), 1 deletion(-)
+git rebase --continue
+warning: git rebase --preserve-merges is deprecated. Use --rebase-merges instead.
+Successfully rebased and updated refs/heads/master.
+{% endhighlight %}
