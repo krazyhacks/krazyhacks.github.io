@@ -61,5 +61,7 @@ random_nav:
         url: /random_python/
       - title: "Python behave"
         url: /random_behave/
+      - title: "Ruby"
+        url: /random_ruby/
       - title: "ssh"
         url: /random_ssh/
