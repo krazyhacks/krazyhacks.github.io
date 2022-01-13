@@ -42,3 +42,6 @@ I need to display some
 try embedding video
 <iframe width="560" height="315" src="http://www.youtube.com/embed/PWf4WUoMXwg" frameborder="0"> </iframe>
 
+### Timeline
+
+[Timeline](https://thecdil.github.io/timelinejs-template/about.html "timeline")
