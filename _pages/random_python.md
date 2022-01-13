@@ -165,3 +165,31 @@ _requirements.txt_ can then be checked into version control with your project.
 The same environment can be restored by reinstalling the same set of packages within a virtual environment, using;
 {% highlight bash linenos %}$ pip install -r requirements.txt{% endhighlight %}
 
+### Tools to help debug
+#### Loguru
+Print better exceptions (using a decorator)
+{% highlight bash %}
+pip install loguru
+{% endhighlight %}
+#### snoop
+Print the lines of code being executed in a function (using a decorator)
+{% highlight bash %}
+pip install snoop
+{% endhighlight %}
+
+#### heartrate
+Visualise the execution of a python program in real-time within a browser (localhost)
+{% highlight bash %}
+pip install heartrate
+{% endhighlight %}
+
+### Pdb - debugger
+[tutorial](https://data-flair.training/blogs/python-debugger/)
+
+### ToDo
+[structuring python code](https://medium.com/analytics-vidhya/structuring-python-code-best-practices-from-over-10-blogs-2e33cbb83c49)
+[Object Oriented Design](https://www.tutorialspoint.com/object_oriented_analysis_design/ooad_quick_guide.htm)
+[Gang-of-four OOD best practice](https://python-patterns.guide/gang-of-four/)
+[Pipenv](https://python.land/virtual-environments/pipenv)
+[python plotting data](https://www.python-graph-gallery.com/plotly/)
+[Python best practice](https://towardsdatascience.com/5-best-practices-for-professional-object-oriented-programming-in-python-20613e08baee)
