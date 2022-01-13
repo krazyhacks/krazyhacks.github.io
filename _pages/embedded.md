@@ -20,3 +20,5 @@ sidebar:
 	echo "Embedded stuff"
    {% endhighlight %}
 
+### Home Automation HUB
+[OpenHAB.org](https://www.openhab.org/)
