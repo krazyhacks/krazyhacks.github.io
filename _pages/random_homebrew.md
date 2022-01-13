@@ -142,3 +142,5 @@ and add a line
 
 **```export PATH=/usr/local/bin:$PATH```**
 
+### Setting up private homebrew
+[see](https://medium.com/prodopsio/creating-homebrew-taps-for-private-internal-tools-c41363d58ab0)
