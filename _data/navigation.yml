@@ -45,10 +45,37 @@ jekyll_nav:
         url: /jekyll_installation/
       - title: "Configuration"
         url: /jekyll_config/
+      - title: "Timeline"
+        url: /jekyll_timeline/
+
+terraform_nav:
+  - title: Terraform
+    children:
+      - title: "Terraform"
+        url: /random_terraform/
+
+ios:
+  - title: Apple iOS
+    children:
+      - title: "iOS Mobile Certificate"
+        url: /random_ios/
+      - title: "iOS Mobile Testing"
+        url: /random_ios/
+
+
+aws_nav:
+  - title: AWS
+    children:
+      - title: "Cloudwatch"
+        url: /random_aws/
+      - title: "Cognito"
+        url: /random_aws/
 
 random_nav:
   - title: Random
     children:
+      - title: "AWS"
+        url: /random_aws/
       - title: "Docker"
         url: /random_docker/
       - title: "git"
@@ -57,9 +84,19 @@ random_nav:
         url: /random_homebrew/
       - title: "Intelij"
         url: /random_intelij/
+      - title: "iOS"
+        url: /random_ios/
+      - title: "Jupyter"
+        url: /random_jupyter/
       - title: "Python"
         url: /random_python/
       - title: "Python behave"
         url: /random_behave/
+      - title: "Python Flask"
+        url: /random_flask/
+      - title: "Ruby"
+        url: /random_ruby/
       - title: "ssh"
         url: /random_ssh/
+      - title: "Terraform"
+        url: /random_terraform/

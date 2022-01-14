@@ -1,23 +1,23 @@
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+---
 
+---
 
+$link-color: red;
 @import "minimal-mistakes";
 
 html {
-  /* apply a natural box layout model to all elements */
-  box-sizing: border-box;
-  background-color: $background-color;
-  font-size: 16px;
+  font-size: 16px; // change to whatever
 
   @include breakpoint($medium) {
-    font-size: 18px;
+    font-size: 16px; // change to whatever
   }
 
   @include breakpoint($large) {
-    font-size: 20px;
+    font-size: 16px; // change to whatever
   }
 
   @include breakpoint($x-large) {
-    font-size: 16px;
- }
+    font-size: 16px; // change to whatever
+  }
 }
+

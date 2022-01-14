@@ -40,7 +40,39 @@ ERROR: Permission to krazyhacks/kh-pages.git denied to krazyhacker.
 fatal: Could not read from remote repository.
 
 Please make sure you have the correct access rights
-and the repository exists.{% endhighlight %}
+and the repository exists.
+{% endhighlight %}
 Since `/Users/krazyworker/.ssh/id_rsa.work` appears first in the list, attempts to push to a personal 
 git repo fails. The way i've managed so far is by having only one identity loaded at any one time.
 There must be a more elegant solution that allows you to switch between github accounts?
+
+<hr>
+TODO
+{% highlight bash linenos %}
+https://psychowhiz.medium.com/configuring-multiple-ssh-keys-for-git-on-the-same-device-41c29320e5fe
+{% endhighlight %}
+
+### SSL 
+[See](https://www.sslshopper.com/article-most-common-openssl-commands.html)
+
+### Inspect files.
+#### Inspect .p12 file
+{% highlight bash %}
+openssl pkcs12 -nokeys -info -in ../DistCertificates.p12
+{% endhighlight %}
+#### Inspect contents of pem file
+{% highlight bash %}
+openssl x509 -noout -text -in Certificate.pem
+{% endhighlight %}
+
+#### Inspect contents of CSR
+{% highlight bash %}
+openssl req -in mycsr.csr -noout -text
+{% endhighlight %}
+
+#### Inspect contents of .cer file
+{% highlight bash %}
+openssl x509 -in cerfile.cer -noout -text
+openssl x509 -inform pem -in cerfile.cer -noout -text
+openssl x509 -inform der -in cerfile.cer -noout -text  # format produced by Apple developer console
+{% endhighlight %}
