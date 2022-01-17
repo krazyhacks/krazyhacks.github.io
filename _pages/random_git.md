@@ -354,7 +354,7 @@ $ tree .git/lost-found
 {% endhighlight %}
 But only created blobs for two files, and they can be inspected using `git show <filename>`
 Instead, since we know which files were deleted from the above `git status` command, each file
-was restored using `git recover <filename>`
+was restored using `git restore <filename>`
 
 Having commited files accidentally, i should have reverted the commit`
 
