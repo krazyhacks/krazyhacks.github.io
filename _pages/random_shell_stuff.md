@@ -17,4 +17,4 @@ See [pip Installation](https://pip.pypa.io/en/stable/installing/).
 
 ### UUID
 random id, lower case, hypens stripped out 
-{% highlight bash linenos %}$ uuid=$(uuidgen | awk '{print tolower($0)}') | sed 's/\-//g'{% endhighlight %}
+{% highlight bash linenos %}$ uuid=$(uuidgen | awk '{print tolower($0)}' | sed 's/\-//g'){% endhighlight %}
