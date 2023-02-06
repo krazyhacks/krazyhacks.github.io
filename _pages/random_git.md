@@ -356,8 +356,8 @@ But only created blobs for two files, and they can be inspected using `git show 
 Instead, since we know which files were deleted from the above `git status` command, each file
 was restored using `git restore <filename>`
 
-Having commited files accidentally, i should have reverted the commit`
-
+Having commited files accidentally, need to work out a more elegant way to revert, `git reset --soft`? 
+`git revert`?
 
 
 #### Misc
@@ -388,3 +388,4 @@ git commit
 
 ### GIT for multiple acounts
 [See](https://dev.to/fadilnatakusumah/how-to-separate-your-git-for-work-and-git-for-personal-2n8b)
+[ And ](https://www.freecodecamp.org/news/manage-multiple-github-accounts-the-ssh-way-2dadc30ccaca/)
