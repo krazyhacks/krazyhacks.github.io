@@ -13,6 +13,31 @@ sidebar:
 ### Terraform section 
 See [pip Installation](https://pip.pypa.io/en/stable/installing/).
 
+
+### AWS profiles in terraform
+Instead of hardcoding AWS credentials in terraform try this to reference
+locally stored credentials;
+{% highlight bash linenos %}
+provider "aws" {
+  region = "region"
+  shared_credentials_file = "$HOME/.aws/credentials # default
+  profile = "default" # you may change to desired profile
+}
+
+terraform {
+  backend "s3" {
+    profile = "default" # change to desired profile
+    # Replace this with your bucket name!
+    bucket         = "great-name-terraform-state-2"
+    key            = "global/s3/terraform.tfstate"
+    region         = "eu-central-1"
+    # Replace this with your DynamoDB table name!
+    dynamodb_table = "great-name-locks-2"
+    encrypt        = true
+  }
+}
+{% endhighlight %}
+
 Notes: terraform error
 {% highlight bash linenos %}
 Error: Provider configuration not present
