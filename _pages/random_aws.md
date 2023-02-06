@@ -57,3 +57,16 @@ Next
 Create Alarm
 
 {% highlight bash linenos %}$ echo "dummy text" {% endhighlight %}
+
+### Add certificate
+* Navigate to certificate manager
+* Request a certificate
+	* Request Public Certificate
+	* fqdn `blah-micro-srv.preview.trustpower.io`
+	* `*.blah-micro-srv.preview.trustpower.io`
+* Validation Method = DNS
+* Add Tags -> Review -> submit request
+* Create Route53 records for 
+	* `blah-micro-srv.preview.trustpower.io`
+* Validation should complete
+* Copy ARN to env variable in secrets manager
