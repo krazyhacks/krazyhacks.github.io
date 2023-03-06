@@ -76,3 +76,31 @@ openssl x509 -in cerfile.cer -noout -text
 openssl x509 -inform pem -in cerfile.cer -noout -text
 openssl x509 -inform der -in cerfile.cer -noout -text  # format produced by Apple developer console
 {% endhighlight %}
+
+### Updating SSL Cert in IONOS -> AWS
+Domains in IONOS, with SSL certificates, renew within IONOS.
+
+Ionos offers to download;
+SSL Certificate - This is pem format
+Create and Download .PFX File - Used for Windows Servers
+Intermediate Certificate 
+Site Seal
+
+AWS Certificate Manager - import cert
+Certificate Body requires PEM-encoded certificate body
+Certificate Private Key requires PEM-encoded private key
+
+#### Import into AWS
+* Navigate to Certificate Manager (select region)
+* Under the list of certificates, the Type is likely to be "imported"
+* Select Import
+** Paste SSL Certificate downloaded from IONOS into pane named "Certificate body"
+** Paste Private key into pane named "Certificate private key"
+** Certificate chain optional - leave blank.
+
+Note: When a certificate is up for renewal, it can be renewed early before the old one expires.
+The renwal certificate will commence early but expire on the same the old one expires but a year ahead.
+Hence its valid for a little over a year/overlaps.
+
+
+
