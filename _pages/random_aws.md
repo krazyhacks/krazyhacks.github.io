@@ -70,3 +70,12 @@ Create Alarm
 	* `blah-micro-srv.preview.trustpower.io`
 * Validation should complete
 * Copy ARN to env variable in secrets manager
+
+### AWS IAM - update passwords
+{% highlight bash linenos %}
+$ # Get list of users
+$ aws iam list-users | jq -r '.Users[].UserName'
+$ aws iam get-login-profile --user-name <username>
+$ aws iam update-login-profile --user-name <username> --password-reset-required
+$ aws iam update-login-profile --user-name <username> --password 'blah' --password-reset-required
+
