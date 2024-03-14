@@ -389,3 +389,7 @@ git commit
 ### GIT for multiple acounts
 [See](https://dev.to/fadilnatakusumah/how-to-separate-your-git-for-work-and-git-for-personal-2n8b)
 [ And ](https://www.freecodecamp.org/news/manage-multiple-github-accounts-the-ssh-way-2dadc30ccaca/)
+
+### Other GIT resources
+[See](https://dev.to/g_abud/advanced-git-reference-1o9j)
+[command completion](https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-Bash)
