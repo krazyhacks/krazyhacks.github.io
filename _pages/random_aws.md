@@ -75,7 +75,10 @@ Create Alarm
 {% highlight bash linenos %}
 $ # Get list of users
 $ aws iam list-users | jq -r '.Users[].UserName'
+$ aws iam get-user --user-name <username>
 $ aws iam get-login-profile --user-name <username>
 $ aws iam update-login-profile --user-name <username> --password-reset-required
 $ aws iam update-login-profile --user-name <username> --password 'blah' --password-reset-required
-
+$ aws iam list-access-keys  --user-name <username>
+$ aws iam update-access-key --access-key-id <value> --status Active  # Note console access needs to be enabled
+{% endhighlight %}
