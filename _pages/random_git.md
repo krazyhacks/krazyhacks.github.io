@@ -80,9 +80,10 @@ Successfully rebased and updated refs/heads/master.
 GIT Configs are either, system, global or local i.e. per repository
 The above 
 {% highlight bash linenos %}# Updates /etc/gitconfig (system wide that affects all user on the same box)
-$ git config --global user.name
-$ git config --global user.name "John Doe"
-$ git config --global user.email johndoe@example.com
+$ sudo git config --system user.name
+$ sudo git config --system user.name "John Doe"
+$ sudo git config --system user.email johndoe@example.com
+Obviously, from the above, you would NOT set personal config at a system level across an entire machine.
 
 # Updates ~/.gitconfig (Affects all projects used by the specific users i.e. home directory)
 $  git config --global user.name
@@ -95,6 +96,8 @@ $ git config --local user.name "John Doe"
 $ git config --local user.email johndoe@example.com
 
 {% endhighlight %}
+Thus the order of priority for configuration levels is: local, global, system. This means when looking for a configuration value, Git will start at the local level and bubble up to the system level.
+
 #### Debug git config
 {% highlight bash linenos %}
 git config --list --show-origin
