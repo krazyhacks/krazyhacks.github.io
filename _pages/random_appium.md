@@ -29,6 +29,7 @@ npm config get prefix
 npm list -g
 npm i --location=global appium
 appium -v
+npm install -g appium-doctor
 appium driver list
 appium driver install chromium
 
@@ -48,8 +49,10 @@ appium driver install xcuitest
 appium driver install mac2
 appium driver install safari
 appium driver install gecko
-appium driver install chromium
+APPIUM_SKIP_CHROMEDRIVER_INSTALL=1 appium driver install chromium
+APPIUM_SKIP_CHROMEDRIVER_INSTALL=1 appium driver install espresso
 
+npm show uiautomator2 version
 {% endhighlight %}
 
 Sometimes the loaded chromium web driver is not compatible with an older browser installed on the device
@@ -79,7 +82,7 @@ open the App.  To change which apps can open on your Mac, choose Apple menu  > S
 then go to Security on the right. Youu can also use the command line;
 
 {% highlight bash linenos %} 
-sudo xattr -r -d com.apple.quarantine file_path
+sudo xattr -r -d com.apple.quarantine /Applications/Appium Inspector.app
 {% endhighlight %}
 
 
