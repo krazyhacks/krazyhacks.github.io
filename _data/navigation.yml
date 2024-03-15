@@ -76,6 +76,8 @@ aws_nav:
 random_nav:
   - title: Random
     children:
+      - title: "Appium"
+        url: /random_appium/      
       - title: "AWS"
         url: /random_aws/
       - title: "Docker"
