@@ -268,6 +268,14 @@ git push origin --delete <old_name>    /
 {% highlight bash %}
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
         git lg
+alias.lg=log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+alias.lgs=log --color --graph --pretty=format:'%Cred%h%Creset %C(black)%ad%Creset %Cgreen(%cr) - %C(yellow)%d%Creset %C(blue)%an%Creset %s %Creset' --abbrev-commit --date=short
+alias.tg=log --tags --no-walk --date=iso-local --pretty='%C(auto)%h %cd%d %s'
+alias.co=checkout
+alias.ci=commit
+alias.br=branch
+alias.st=status
+alias.revp=rev-parse --short HEAD
 
 {% endhighlight %}
 
