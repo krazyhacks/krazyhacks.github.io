@@ -32,6 +32,8 @@ $ vi name_of_new_page.md
 
 ##### GitHub
 ##### GitHub repo
+Make changes in `krazyhacks.github.io` repo, create a PR and merge into develop.
+When happy create a PR into `master`, once merged, github will build the site.
 ##### Pre-Requisite packages/tools
 
 ### Markdown cheat sheet
