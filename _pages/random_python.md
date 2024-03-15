@@ -183,6 +183,28 @@ Visualise the execution of a python program in real-time within a browser (local
 pip install heartrate
 {% endhighlight %}
 
+### Python dictionary comprehension
+Lots of examples on the web, but more likely to remember one of my own;
+See example json response, wish to split into to key value pairs, hence strip the keys "Name" and "Value" for unique keys
+{% highlight python %}
+import json
+response='{ "UserAttributes":[ { "Name":"custom:postcode", "Value":"OX5 1LU" }, { "Name":"sub", "Value":"bd2c8db5-0b08-4f0f-be9e-069564b654f3" }, { "Name":"address", "Value":"|6||Stocks Tree Close|Yarnton|KIDLINGTON|Oxfordshire|OX5 1LU||||9Z3|ElecM|GasM|NoIGT|" }, { "Name":"email_verified", "Value":"true" }, { "Name":"given_name", "Value":"Test4" }, { "Name":"family_name", "Value":"Test6" }, { "Name":"custom:initial_email_optout", "Value":"false" }, { "Name":"email", "Value":"atul.patel@trustpower.com" } ], "Username":"bd2c8db5-0b08-4f0f-be9e-069564b654f3" }'
+
+json_resp = json.loads(response)
+UserAttr = {}
+
+# Using a for-loop
+for key in json_resp['UserAttributes']:
+    UserAttr[f"{key['Name']}"] =  key['Value']
+    
+# Using a dictionary comprehension
+UserAt = {f"{key['Name']}" : key['Value'] for key in json_resp['UserAttributes']} 
+    
+print(UserAttr['sub'])
+print(UserAt['sub'])
+
+{% endhighlight %}
+
 ### Pdb - debugger
 [tutorial](https://data-flair.training/blogs/python-debugger/)
 

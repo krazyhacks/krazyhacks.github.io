@@ -70,6 +70,8 @@ aws_nav:
         url: /random_aws/
       - title: "Cognito"
         url: /random_aws/
+      - title: "Insights"
+        url: /random_aws/
 
 random_nav:
   - title: Random

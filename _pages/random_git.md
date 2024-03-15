@@ -268,8 +268,105 @@ git push origin --delete <old_name>    /
 {% highlight bash %}
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
         git lg
+alias.lg=log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+alias.lgs=log --color --graph --pretty=format:'%Cred%h%Creset %C(black)%ad%Creset %Cgreen(%cr) - %C(yellow)%d%Creset %C(blue)%an%Creset %s %Creset' --abbrev-commit --date=short
+alias.tg=log --tags --no-walk --date=iso-local --pretty='%C(auto)%h %cd%d %s'
+alias.co=checkout
+alias.ci=commit
+alias.br=branch
+alias.st=status
+alias.revp=rev-parse --short HEAD
 
 {% endhighlight %}
+
+### Recovering from Git
+#### Accidental deletion from reset --hard
+Ran `git reset --hard <hash>` to revert a change after committing some new files. Bad idea!
+This reverted back to the previous commit and deleted all the new files created.  Here's how i recovered the lost work.
+{% highlight bash linenos %}
+$ git reflog show    ................ 
+ed7937b (HEAD -> master) HEAD@{0}: reset: moving to ed7937b
+2495666 HEAD@{1}: commit: screenshot showing typical setup in xcode
+ed7937b (HEAD -> master) HEAD@{2}: commit: Initial commit of pi work
+064b846 HEAD@{3}: commit: how to inspect the contents of CSR, pks, p12 files
+a643195 HEAD@{4}: commit: using rbenv to manage ruby and ruby pkgs/gems
+6f87bcd HEAD@{5}: commit: Initial work on using python behave
+9b0af92 HEAD@{6}: commit: usefull pkgs and links to use in python
+399e3f9 HEAD@{7}: commit: starting point for setting up a homebreww tap
+33e7e61 HEAD@{8}: commit: backlog of updates
+101e77c HEAD@{9}: commit: link info for open homeautomation
+
+{% endhighlight %}
+Note above after running `git reset --hard ed7937b`, commit 2495666 which contained several new files
+were lost, deleted, stupidly expecting them to magically reappear as uncommited files. `git status` would show
+everything was upto date :-(
+
+To recover from this, run the following, note `HEAD@{2}` is from the original ed7937b commit;
+
+{% highlight bash linenos %}
+$ git reset HEAD@{2}
+Unstaged changes after reset:
+D       _pages/random_aws.md_
+D       _pages/random_brew.md_
+D       _pages/random_ios.md_
+D       _pages/random_jupyter.md_
+D       _pages/random_lastpass.md_
+D       _pages/random_pi.md_
+D       _pages/random_python_flask.md_
+D       _pages/random_robotics.md_
+D       _pages/random_shell_stuff.md_
+D       _pages/random_terraform.md_
+D       assets/images/XcodeCertSigningError.png
+{% endhighlight %}
+
+{% highlight bash linenos %}
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 9 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        deleted:    _pages/random_aws.md
+        deleted:    _pages/random_brew.md
+        deleted:    _pages/random_ios.md
+        deleted:    _pages/random_jupyter.md
+        deleted:    _pages/random_lastpass.md
+        deleted:    _pages/random_pi.md
+        deleted:    _pages/random_python_flask.md
+        deleted:    _pages/random_robotics.md
+        deleted:    _pages/random_shell_stuff.md
+        deleted:    _pages/random_terraform.md
+        deleted:    assets/images/XcodeCertSigningError.png
+
+{% endhighlight %}
+
+Following command "should" recover files under a folder lost-found;
+{% highlight bash linenos %}
+$ git fsck --lost-found
+Checking object directories: 100% (256/256), done.
+Checking objects: 100% (158/158), done.
+dangling blob afd34d9612c7abc4e920da9aef04c81356a1370a
+dangling commit cd2b1be29bee1c89383de3aeaecda66d4dd9b9c0
+
+$ tree .git/lost-found
+.
+├── commit
+│   └── cd2b1be29bee1c89383de3aeaecda66d4dd9b9c0
+└── other
+    └── afd34d9612c7abc4e920da9aef04c81356a1370a
+
+2 directories, 2 files
+
+{% endhighlight %}
+But only created blobs for two files, and they can be inspected using `git show <filename>`
+Instead, since we know which files were deleted from the above `git status` command, each file
+was restored using `git restore <filename>`
+
+Having commited files accidentally, need to work out a more elegant way to revert, `git reset --soft`? 
+`git revert`?
+
 
 #### Misc
 {% highlight bash %}
@@ -285,7 +382,7 @@ git for-each-ref --format="%(refname:short) | %(creatordate)" refs/tags/\*   # G
 ### Divergent branches
 TODO : document how this can happen...
 
-When merging the release branch into master, conflicts were raised. After resolving the conflicts in favour of the release branch the resultant showed difference with the orginal release brnach.
+When merging the release branch into master, conflicts were raised. After resolving the conflicts in favour of the release branch the resultant showed difference with the orginal release branch.
 {% highlight bash %}
 git checkout master
 git checkout -b release/1.2.1
@@ -299,3 +396,8 @@ git commit
 
 ### GIT for multiple acounts
 [See](https://dev.to/fadilnatakusumah/how-to-separate-your-git-for-work-and-git-for-personal-2n8b)
+[ And ](https://www.freecodecamp.org/news/manage-multiple-github-accounts-the-ssh-way-2dadc30ccaca/)
+
+### Other GIT resources
+[See](https://dev.to/g_abud/advanced-git-reference-1o9j)
+[command completion](https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-Bash)

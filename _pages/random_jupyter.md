@@ -40,6 +40,10 @@ InteractiveShell.ast_node_interactivity = "all"
 * SHIFT+M `Merge highlighted cells`
 
 ### iPython Magic
+Magic commands in ipython are also available in Jupyter
+#### help
+`%lsmagic` - List magic commands
+`%magic_command?` - Help on specific magic_command
 #### %env
 Set environment variables
 {% highlight python linenos %}
@@ -86,7 +90,7 @@ three = "to get ready now go cat go"
 one three two
 {% endhighlight %}
 #### Timing
-Two useful commands for timinig `%%time` and `%timeit`
+Two useful commands for timinig `%%time`,  `%%timeit`  and `%timeit`
 {% highlight python linenos %}
 %%time
 import time
@@ -102,5 +106,79 @@ import numpy
 
 100000 loops, best of 3: 5.5 µs per loop
 {% endhighlight %}
+### Line profiling %lprun
+Outlines the time performance of a python function, program or script
+
+{% highlight python linenos %}
+! pip install line_profiler
+%load_ext line_profiler
+
+def remove_dups1(lst):
+	uniques=[]
+	for name in lst:
+		if name not in uniques:
+			uniques.append(name)
+	return uniques
+
+%lprun -f remove_dups1 remove_dups1(lst)
+
+def remove_dups2(lst):
+	return list(set(list))
+
+%lprun -f remove_dups2 remove_dups2(lst)
+
+
+{% endhighlight %}
+### Memory Profiling %mprun
+#### Install mprun pakage
+{% highlight python linenos %}
+!pip install  memory_profiler
+
+%load_ext memory_profiler
+
+{% endhighlight %} 
+
+#### Save the function/script as a file
+Using `%%file my_file.py` will save the contents of that jupyter cell as a file
+{% highlight python linenos %}
+%%file my_file.py
+def calc_apply(df):
+    column = df['COMB (mpg)']
+    new_vals = column.apply(lambda x: x* 0.425)
+    df['kml'] = new_vals
+    return df
+
+def calc_listcomp(df):
+    column = df['COMB (mpg)']
+    new_vals = [x*0.425 for x in column]
+    df['kml'] = new_vals
+    return df
+
+def calc_direct(df):
+    column = df['COMB (mpg)']
+    new_vals = column*0.425
+    df['kml'] = new_vals
+    return df
+
+def calc_numpy(df):
+    column = df['COMB (mpg)'].values
+    new_vals = column*0.425
+    df['kml'] = pd.Series(new_vals)
+    return df
+{% endhighlight %} 
+
+#### Load the function/script 
+Next, load the memory profiler extension and import your functions from the file.
+{% highlight python linenos %}
+// from my_file import func_name
+// %mprun -f func_name func_name(params) 
+%load_ext memory_profiler
+
+from my_file import calc_apply, calc_listcomp, 
+                    calc_direct, calc_numpy
+
+{% endhighlight %} 
+[See original post on lprun,mprun](https://towardsdatascience.com/effectively-use-timeit-lprun-and-mprun-to-write-efficient-python-code-f06fb8457049)
 ### Advanced options ;-)
 [See](https://www.dataquest.io/blog/advanced-jupyter-notebooks-tutorial/)
+
