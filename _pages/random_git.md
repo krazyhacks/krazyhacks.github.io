@@ -86,12 +86,12 @@ $ sudo git config --system user.email johndoe@example.com
 Obviously, from the above, you would NOT set personal config at a system level across an entire machine.
 
 # Updates ~/.gitconfig (Affects all projects used by the specific users i.e. home directory)
-$  git config --global user.name
+$ git config --global user.name
 $ git config --global user.name "John Doe"
 $ git config --global user.email johndoe@example.com
 
 # Updates ./git_project_folder/.gitconfig (Affects specific project)
-$  git config --local user.name
+$ git config --local user.name
 $ git config --local user.name "John Doe"
 $ git config --local user.email johndoe@example.com
 
@@ -101,6 +101,7 @@ Thus the order of priority for configuration levels is: local, global, system. T
 #### Debug git config
 {% highlight bash linenos %}
 git config --list --show-origin
+git config --global --list 
 {% endhighlight %}
 
 ### Rename branch 
@@ -263,6 +264,19 @@ git push origin -u <new_name>          \___ obviously need to be sure others hav
 git push origin --delete <old_name>    /
 
 {% endhighlight %}
+
+### Ignore files
+Store common files to ignore in central place.
+{% highlight bash linenos}
+$ git config --global core.excludefile ~/.gitignore_global
+
+Create file ~/.gitignore_global with
+
+*~
+.DS_Store
+
+{% endhighlight}
+
 ### GIT Python module 
 
 ### GIT Log 
