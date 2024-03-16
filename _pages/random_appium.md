@@ -23,16 +23,44 @@ nvm list
 nvm install 18.18.2
 which node
 node -v
+nvm use v18.18.2
+npm install -g npm@10.5.0  <=== sometimes throws errors trying to install pkgs
+npm config get prefix
+npm list -g
 npm i --location=global appium
 appium -v
+npm install -g appium-doctor
 appium driver list
 appium driver install chromium
+
+Drivers are installed under ~/.appium/node_modules/
+if not available via npm download [from here](https://googlechromelabs.github.io/chrome-for-testing/#stable)try using a mirror site by adding the following line to `~/.npmrc` 
+
+chromedriver_cdnurl=https://npm.taobao.org/mirrors/chromedriver
+
+
+{% endhighlight %}
+
+### Appium Drivers
+Install [Appium drivers](https://appium.io/docs/en/2.0/quickstart/uiauto2-driver/) 
+{% highlight bash %}
+appium driver install uiautomator2
+appium driver install xcuitest
+appium driver install mac2
+appium driver install safari
+appium driver install gecko
+APPIUM_SKIP_CHROMEDRIVER_INSTALL=1 appium driver install chromium
+APPIUM_SKIP_CHROMEDRIVER_INSTALL=1 appium driver install espresso
+
+npm show uiautomator2 version
 {% endhighlight %}
 
 Sometimes the loaded chromium web driver is not compatible with an older browser installed on the device
 either install the correct version - usually reported in the logs or run appium to download it.
+
+
 {% highlight bash linenos %}
-appium ----allow-insecure chromedriver_autodownload
+appium --allow-insecure chromedriver_autodownload
 {% endhighlight %}
 
 #### Appium Capabilities
@@ -54,7 +82,7 @@ open the App.  To change which apps can open on your Mac, choose Apple menu  > S
 then go to Security on the right. Youu can also use the command line;
 
 {% highlight bash linenos %} 
-sudo xattr -r -d com.apple.quarantine file_path
+sudo xattr -r -d com.apple.quarantine /Applications/Appium Inspector.app
 {% endhighlight %}
 
 
