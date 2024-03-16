@@ -10,6 +10,10 @@ sidebar:
 ---
 
 ## Appium 
+[Appium Webpage](https://appium.io/docs/en/latest)
+[Appium Library](https://appium.readthedocs.io/en/latest/en/about-appium/api) NOTE: Best to navigate using the `EN` drop down menu to jump to a section then use the `previous` and `next` arrows to move within that section. The page with the full menu of direct links are broken :-( 
+[Appium API Documentation](https://appium.readthedocs.io/en/latest/en/commands/elements/attributes/README)
+
 ### Appium setup/installation 
 
 {% highlight bash linenos %}$ 
