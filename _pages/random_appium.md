@@ -10,6 +10,10 @@ sidebar:
 ---
 
 ## Appium 
+[Appium Webpage](https://appium.io/docs/en/latest)
+[Appium Library](https://appium.readthedocs.io/en/latest/en/about-appium/api) NOTE: Best to navigate using the `EN` drop down menu to jump to a section then use the `previous` and `next` arrows to move within that section. The page with the full menu of direct links are broken :-( 
+[Appium API Documentation](https://appium.readthedocs.io/en/latest/en/commands/elements/attributes/README)
+
 ### Appium setup/installation 
 
 {% highlight bash linenos %}$ 
@@ -56,11 +60,16 @@ npm show uiautomator2 version
 
 Sometimes the loaded chromium web driver is not compatible with an older browser installed on the device
 either install the correct version - usually reported in the logs or run appium to download it.
-
-
 {% highlight bash linenos %}
 appium --allow-insecure chromedriver_autodownload
 {% endhighlight %}
+
+## Appium Doctor
+Run `Appium Doctor` to check health of install, and, use the report to ensure the correct packages/libraries are installed.
+{% highlight bash linenos %}
+$ appium-doctor
+{% endhighlight %}
+
 
 #### Appium Capabilities
 [Capabilities docs](https://appium.io/docs/en/2.1/guides/caps/)

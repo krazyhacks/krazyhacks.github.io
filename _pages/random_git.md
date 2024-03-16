@@ -412,8 +412,95 @@ git commit
 [How to make two branches indentical](https://stackoverflow.com/questions/36320517/making-two-branches-identical)
 
 ### GIT for multiple acounts
-[See](https://dev.to/fadilnatakusumah/how-to-separate-your-git-for-work-and-git-for-personal-2n8b)
-[ And ](https://www.freecodecamp.org/news/manage-multiple-github-accounts-the-ssh-way-2dadc30ccaca/)
+See [here](https://dev.to/fadilnatakusumah/how-to-separate-your-git-for-work-and-git-for-personal-2n8b)
+and [ here ](https://www.freecodecamp.org/news/manage-multiple-github-accounts-the-ssh-way-2dadc30ccaca/)
+
+Organise your git directories as follows to separate work, personal and opensource repos;
+{% highlight bash %}
+$ tree -d -L 3
+
+${HOME}
+|
+├── git
+│   ├── opensource
+│   │         ├── python
+│   │         └── neovim
+│   ├── personal
+│   │         ├── project_A
+│   │         └── project_B
+│   └── work
+│          └── ACME_Project
+└-
+{% endhighlight %}
+
+All three groups of repos, `opensource`, `personal` and `work` could need their own configs, for example the username and email used for commits, the ssh-key used for interacting with the repos.
+
+Store common configuration as a `--gloabal` config (not `--system` level!), and split out the group level configs into specific files for example `~/.gitconfig-opensource`, `~/.gitconfig-personal` and `~/.gitconfig-work`. So you have
+
+{% highlight bash %}
+
+${HOME}
+|
+├── .gitconfig
+├── .gitconfig_opensource
+├── .gitconfig_personal
+├── .gitconfig_work
+|
+├── git
+│   ├── opensource
+│   │         ├── python
+│   │         └── neovim
+│   ├── personal
+│   │         ├── project_A
+│   │         └── project_B
+│   └── work
+│          └── ACME_Project
+└-
+{% endhighlight %}
+
+* Let `.gitconfig` contain all the common settings like aliases
+* Pull in configuration settings by adding an `if` statement depending on CWD, i.e add the following lines;
+
+{% highlight bash %}
+
+[includeif "gitdir/i:~/git/opensource/"]
+    path = ~/git/opensource
+
+[includeif "gitdir/i:~/git/personal/"]
+    path = ~/git/opensource_personal
+
+[includeif "gitdir/i:~/git/work/"]
+    path = ~/git/opensource_work
+
+{% endhighlight %}
+
+Update each group specific config file with personalised config, e.g. 
+* For `~/.gitconfig_work`;
+{% highlight bash %}
+[user]
+    name = work_user_name
+    email = work_email@company.com
+
+[core]
+    sshCommand = "ssh -i ~/.ssh/id_rsa.work"
+
+{% endhighlight %}
+
+* For `~/.gitconfig_personal`
+
+{% highlight bash %}
+[user]
+    name = personal_user_name
+    email = personal_email@company.com
+
+[core]
+    sshCommand = "ssh -i ~/.ssh/id_rsa.personal"
+
+{% endhighlight %}
+
+Note from above, each config may require specific ssh keys to access git repo.
+
+
 
 ### Other GIT resources
 [See](https://dev.to/g_abud/advanced-git-reference-1o9j)
