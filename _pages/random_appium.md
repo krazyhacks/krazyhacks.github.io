@@ -10,14 +10,12 @@ sidebar:
 ---
 
 ## Appium 
-### Appium section 
-See [pip Installation](https://pip.pypa.io/en/stable/installing/).
+### Appium setup/installation 
 
-{% highlight bash linenos %}$ echo "dummy text" {% endhighlight %}
+{% highlight bash linenos %}$ 
 
 * Install nvm, use nvm to manage node versions
-* Install node;  nvm list, nvm install
-* {% highlight bash linenos %}
+* Install specific version of node for appium, list available versions, make required version active for the current shell
 
 nvm list
 nvm install 18.18.2
@@ -32,13 +30,14 @@ appium -v
 npm install -g appium-doctor
 appium driver list
 appium driver install chromium
+{% endhighlight %}
+
 
 Drivers are installed under ~/.appium/node_modules/
 if not available via npm download [from here](https://googlechromelabs.github.io/chrome-for-testing/#stable)try using a mirror site by adding the following line to `~/.npmrc` 
 
+{% highlight bash linenos %}
 chromedriver_cdnurl=https://npm.taobao.org/mirrors/chromedriver
-
-
 {% endhighlight %}
 
 ### Appium Drivers
