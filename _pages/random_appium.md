@@ -10,14 +10,12 @@ sidebar:
 ---
 
 ## Appium 
-### Appium section 
-See [pip Installation](https://pip.pypa.io/en/stable/installing/).
+### Appium setup/installation 
 
-{% highlight bash linenos %}$ echo "dummy text" {% endhighlight %}
+{% highlight bash linenos %}$ 
 
 * Install nvm, use nvm to manage node versions
-* Install node;  nvm list, nvm install
-* {% highlight bash linenos %}
+* Install specific version of node for appium, list available versions, make required version active for the current shell
 
 nvm list
 nvm install 18.18.2
@@ -32,13 +30,14 @@ appium -v
 npm install -g appium-doctor
 appium driver list
 appium driver install chromium
+{% endhighlight %}
+
 
 Drivers are installed under ~/.appium/node_modules/
 if not available via npm download [from here](https://googlechromelabs.github.io/chrome-for-testing/#stable)try using a mirror site by adding the following line to `~/.npmrc` 
 
+{% highlight bash linenos %}
 chromedriver_cdnurl=https://npm.taobao.org/mirrors/chromedriver
-
-
 {% endhighlight %}
 
 ### Appium Drivers
@@ -67,10 +66,10 @@ appium --allow-insecure chromedriver_autodownload
 [Capabilities docs](https://appium.io/docs/en/2.1/guides/caps/)
 {% highlight json linenos %} 
 {
+  "platformName": "Android",
   "appium:automationName": "uiautomator2",
-  "appium:platformName": "Android",
-  "appium:appPackage": "com.trustpower.loop",
-  "appium:noReset": true
+  "appium:deviceName": "cexx17xxxx5330xx03",
+  "appium:appPackage": "com.trustpower.loop"
 }
 {% endhighlight %}
 
@@ -91,4 +90,37 @@ In Chrome uncheck the tick boxes [under](chrome://inspect/devices) to release de
 
 ## Debug / Screen mirror using Chrome
 [Use Chrome to debug](https://developer.chrome.com/docs/devtools/remote-debugging/)
+
+
+## Launch and run Appium Inspector
+
+* Ensure environment variables are set for current shell, add it to `.bashrc` or `.zshrc`
+{% highlight bash linenos %}
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/
+export PATH=${JAVA_HOME}/bin:${PATH}
+
+export ANDROID_HOME=${HOME}/Library/Android/sdk
+{% endhighlight %}
+
+Ensure you have `adb` in your path. Connect android phone over USB to laptop. Check device is detected
+{% highlight bash linenos %}
+$ adb devices
+List of devices attached
+cexx17xxxx5330xx03      unauthorised      <=== authorise from handset under developer settings
+
+$ adb devices
+cexx17xxxx5330xx03      device
+{% endhighlight %}
+
+From this shell start `appium` server (pass argument to allow auto download of chromuim as above)
+{% highlight bash linenos %}
+$ appium 
+{% endhighlight %}
+Appium server will start up on default localhost:4723
+
+Launch `Appuim Inspector` using spotlight search `CND-SPACE`
+Within `Appium Inspector` create/add desired Capabilities (see above simple example) or with [more options](https://appium.io/docs/en/2.0/guides/caps/)
+Use `SaveAs` to store setup for easy recall/templating for different configurations. Settings are stored under `~/Library/Application Support/appium-inspector/settings.json`.
+
+Click `Start Session`,  `Appium Inspector` should connect to the `appuim` server started in the terminal shell, in turn connect to the mobile device and launch the App specified in desired Capabilities. `Appium Inspector` should mirror the screen for inspection.
 
