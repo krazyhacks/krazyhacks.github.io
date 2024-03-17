@@ -541,7 +541,7 @@ Above config gets ssh-agent to, use `id_rsa.work` as the key for any Git URL tha
 Without ssh-keys regsitered with `ssh-agent`, everytime you `git clone` or interact with github, you would need to login/authenticate - a right pain! You'll be prompted to login using the default `id_rsa` configured in `~/.ssh/config`.
 
 
-### Cloning Repositories
+#### Cloning Repositories
 When cloning a repository be sure to adjust the git url so the correct ssh-key is used.
 
 Usually we would use;
@@ -564,7 +564,7 @@ $ git remote set-url origin git@github.com-personal:personal_account_name/repo_n
 $ git remote -v
 {% endhighlight %}
 
-### Init a new repo
+#### Init a new repo
 
 {% highlight bash %}
 $ git init
