@@ -573,6 +573,16 @@ $ git remote -v
 {% endhighlight %}
 
 
+### Fix commit author and email
+
+First ensure `git config -l` reports the correct `user.name & user.email` you wish to update to.
+{% highlight bash %}
+$ git rebase -r --root --exec "git commit --ammend --no-edit --reset-author"
+$ PRE_COMMIT_ALLOW_NO_CONFIG=1 git rebase -r --root --exec "git commit --ammend --no-edit --reset-author"
+{% endhighlight %}
+
+If the repo has a `pre-commit` hook, prepend the above command with env var to disable pre-commit from running.
+
 ### Other GIT resources
 [See](https://dev.to/g_abud/advanced-git-reference-1o9j)
 [command completion](https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-Bash)
