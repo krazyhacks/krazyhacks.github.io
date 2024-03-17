@@ -412,10 +412,12 @@ git commit
 [How to make two branches indentical](https://stackoverflow.com/questions/36320517/making-two-branches-identical)
 
 ### GIT for multiple acounts
-See [here](https://dev.to/fadilnatakusumah/how-to-separate-your-git-for-work-and-git-for-personal-2n8b)
+Based on the good work from [here](https://dev.to/fadilnatakusumah/how-to-separate-your-git-for-work-and-git-for-personal-2n8b)
 and [ here ](https://www.freecodecamp.org/news/manage-multiple-github-accounts-the-ssh-way-2dadc30ccaca/)
 
-Organise your git directories as follows to separate work, personal and opensource repos;
+One could create a `.gitconfig` file for each repo, similar to what a command like `git config --local user.name foobar` would do, but this would become tedious to setup everytime a new repo is added.
+
+Organise your git directories as follows to separate and group work, personal and opensource repos;
 {% highlight bash %}
 $ tree -d -L 3
 
@@ -435,7 +437,7 @@ ${HOME}
 
 All three groups of repos, `opensource`, `personal` and `work` could need their own configs, for example the username and email used for commits, the ssh-key used for interacting with the repos.
 
-Store common configuration as a `--gloabal` config (not `--system` level!), and split out the group level configs into specific files for example `~/.gitconfig-opensource`, `~/.gitconfig-personal` and `~/.gitconfig-work`. So you have
+Store common configuration as a `--gloabal` config (not `--system` level!), and split out the group level configs into specific files for example `~/.gitconfig_opensource`, `~/.gitconfig_personal` and `~/.gitconfig_work`. So you have
 
 {% highlight bash %}
 
@@ -459,7 +461,7 @@ ${HOME}
 {% endhighlight %}
 
 * Let `.gitconfig` contain all the common settings like aliases
-* Pull in configuration settings by adding an `if` statement depending on CWD, i.e add the following lines;
+* Pull in configuration settings by adding an `if` statement depending on CWD, i.e add the following lines to `~/.gitconfig`;
 
 {% highlight bash %}
 
@@ -499,7 +501,76 @@ Update each group specific config file with personalised config, e.g.
 {% endhighlight %}
 
 Note from above, each config may require specific ssh keys to access git repo.
+See above link on how to create ssh-keys and adding them to github.
 
+#### Register ssh keys
+
+Ensure `ssh-agent` is running
+{% highlight bash %}
+$ eval "$(ssh-agent -s)"
+{% endhighlight %}
+
+Add ssh key and check its registered
+{% highlight bash %}
+$ ssh-add ~/.ssh/id_rsa.work
+$ ssh-add ~/.ssh/id_rsa.personal
+$ ssh-add -l
+{% endhighlight %}
+
+In order to pick up the correct ssh key, `~/.ssh/config` needs to be updated.
+
+{% highlight bash %}
+# Work account - the default config?
+Host github.com-work_user
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_rsa.work
+
+# Personal account
+Host github.com-personal_user
+    HostName github.com
+    User git
+    IdentityFile = ~/.ssh/id_rsa.personal
+{% endhighlight %}
+
+`work_user` is the github user id for the work account.
+`github.com-work_user` is a notation used to differentiate multiple Git accounts, alternatively `work_user.github.com` could be used.  With `.ssh/config` allows multiple identities to be loaded by `ssh-agent`
+
+Above config gets ssh-agent to, use `id_rsa.work` as the key for any Git URL that uses `@github.com`, whereas  the `id_rsa.personal` key is used for all Git URLs which contains `@github.com-personal_user`.
+
+Without ssh-keys regsitered with `ssh-agent`, everytime you `git clone` or interact with github, you would need to login/authenticate - a right pain! You'll be prompted to login using the default `id_rsa` configured in `~/.ssh/config`.
+
+
+### Cloning Repositories
+When cloning a repository be sure to adjust the git url so the correct ssh-key is used.
+
+Usually we would use;
+{% highlight bash %}
+$ git clone git@github.com:personal_account_name/repo_name.git
+{% endhighlight %}
+
+The URL needs to be adjusted to match the URL set in `~/.ssh/config` hence picks up the correct ssh-key
+{% highlight bash %}
+$ git clone git@github.com-personal:personal_account_name/repo_name.git
+$ git config --list
+$ git remote -v
+{% endhighlight %}
+
+Note the `git config` will show the `remote.origin.url` will have the adjusted URL, this now ensures `git push` command will pick the correct ssh-key.
+
+Obviously, existing repositories will need to be updated to use the correct key by adjusting the URL
+{% highlight bash %}
+$ git remote set-url origin git@github.com-personal:personal_account_name/repo_name.git
+$ git remote -v
+{% endhighlight %}
+
+### Init a new repo
+
+{% highlight bash %}
+$ git init
+$ git remote add origin git@github.com-personal:personal_account_name/repo_name.git
+$ git remote -v
+{% endhighlight %}
 
 
 ### Other GIT resources
