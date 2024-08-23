@@ -4,12 +4,12 @@
 
 title: Security Keys
 layout: single
-permalink: /random_keys/
+permalink: /random_mfa/
 sidebar:
    nav: "random_nav"
 ---
 
-## Security Keys 
+## Security Keys MFA 
 ### Security section 
 See [PyOTP](https://pyauth.github.io/pyotp/) for generating MFA/OTP keys on the command line.
 
