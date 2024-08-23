@@ -38,3 +38,14 @@ https://www.waveshare.com/wiki/Libraries_Installation_for_RPi
 
 ### Raspberry pi zero with OBD-II interface
 [OBD-II interace](https://www.instructables.com/OBD-Pi/)
+
+
+### Extend Activity Light
+Raspberry Pi's have an onboard status/power/activity LED, this LED can be extended to a second LED and mounted
+on a panel by repurposing a GPIO on the 40pin header.  Select a GPIO, e.g. 25, then add the following lines to
+`/boot/firmware/config.txt`;
+
+{% highlight %}
+# Activity Light on GPIO 25
+dtparam=act_led_gpio=25
+{% endhighlight %}
