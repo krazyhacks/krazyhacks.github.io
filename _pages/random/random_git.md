@@ -135,6 +135,14 @@ git push --tags                          # Push your tag to remote:
 git push origin :<original tag name>     #  Delete your tag from remote:
 {% endhighlight %}
 
+### Move tag
+When branch/repo has been tagged at the wrong place or new changes are committed after tagging, the tag may need to be moved to reflect whats been released
+{% highlight bash %}
+git log
+git tag -d <tag_name>
+git push --delete origin <tag_name>
+
+{% endhighlight %}
 
 ### Get list of tags
 {% highlight bash linenos %}
@@ -503,6 +511,13 @@ Update each group specific config file with personalised config, e.g.
 Note from above, each config may require specific ssh keys to access git repo.
 See above link on how to create ssh-keys and adding them to github.
 
+#### Create ssh keys for git
+New instructions added on github web site, TODO: command to add to OSx KeyChain
+
+{% highlight bash %}
+ssh-keygen -t ed25519 -C "your_email@example.com"
+{% endhighlight %}
+
 #### Register ssh keys
 
 Ensure `ssh-agent` is running
@@ -572,6 +587,16 @@ $ git remote add origin git@github.com-personal:personal_account_name/repo_name.
 $ git remote -v
 {% endhighlight %}
 
+
+### Fix commit author and email
+
+First ensure `git config -l` reports the correct `user.name & user.email` you wish to update to.
+{% highlight bash %}
+$ git rebase -r --root --exec "git commit --ammend --no-edit --reset-author"
+$ PRE_COMMIT_ALLOW_NO_CONFIG=1 git rebase -r --root --exec "git commit --ammend --no-edit --reset-author"
+{% endhighlight %}
+
+If the repo has a `pre-commit` hook, prepend the above command with env var to disable pre-commit from running.
 
 ### Other GIT resources
 [See](https://dev.to/g_abud/advanced-git-reference-1o9j)
