@@ -20,23 +20,27 @@ embedded_nav:
   - title: Embedded
     children:
       - title: "Arduino"
-        url: /arduino/
+        url: /embedded/arduino/
+      - title: "IOT"
+        url: /embedded/iot/
       - title: "Pi"
-        url: /pi/
+        url: /embedded/pi/
       - title: "hardware"
-        url: /hardware/
+        url: /embedded/hardware/
+      - title: "Robotics"
+        url: /embedded/robotics/
   - title: Projects
     children:
       - title: "CNC"
-        url: /cnc/
+        url: /embedded/cnc/
 
 cloud_nav:
   - title: Cloud
     children:
       - title: "AWS"
-        url: /aws/
-      - title: "iot"
-        url: /iot/
+        url: /aws/aws_cli/
+      - title: "IOT"
+        url: /cloud/iot/
 
 jekyll_nav:
   - title: Jekyll
@@ -67,15 +71,19 @@ aws_nav:
   - title: AWS
     children:
       - title: "Cloudwatch"
-        url: /random_aws/
+        url: /aws/random_aws/
       - title: "Cognito"
-        url: /random_aws/
+        url: /aws/random_aws/
+      - title: "Insights"
+        url: /aws/random_aws/
 
 random_nav:
   - title: Random
     children:
+      - title: "Appium"
+        url: /random_appium/      
       - title: "AWS"
-        url: /random_aws/
+        url: /aws/random_aws/
       - title: "Docker"
         url: /random_docker/
       - title: "git"

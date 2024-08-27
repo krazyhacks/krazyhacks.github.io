@@ -32,6 +32,8 @@ $ vi name_of_new_page.md
 
 ##### GitHub
 ##### GitHub repo
+Make changes in `krazyhacks.github.io` repo, create a PR and merge into develop.
+When happy create a PR into `master`, once merged, github will build the site.
 ##### Pre-Requisite packages/tools
 
 ### Markdown cheat sheet
@@ -45,3 +47,40 @@ try embedding video
 ### Timeline
 
 [Timeline](https://thecdil.github.io/timelinejs-template/about.html "timeline")
+
+### Jekyll Folder structure
+ 
+{% highlight bash linenos %}
+
+_data/navigation.yml
+_pages/file.md
+   |-- aws
+        |--aws_file.md
+   |-- embedded
+        |--embedded_file.md
+   |-- hardware
+        |--hw_file.md
+_posts
+   |--
+assets
+   |-- css
+   |-- images
+        |-- image_file.jpg
+{% endhighlight %}
+
+#### Navigation and permalinks convention
+
+{% highlight bash linenos %}
+cloud_nav:
+  - title: Cloud
+    children:
+      - title: "AWS"
+        url: /aws/aws_cli/
+      - title: "IOT"
+        url: /cloud/iot/
+{% endhighlight %}
+* File `_data/navigation.yml` groups lists of url links together for displaying in the right hand panel
+* `main:` section is reserved for the sections listed along the top left hand side of the page.
+* In `_data/navigation.yml` create page specific groups of links by adding a new tag like `cloud_nav`, named approriately.
+* `navigation.yml` to use the links specified as permalink text in `_pages`, like `/aws/aws_cli` and `/cloud/iot/`. 
+* Choose permalinks that match the target page in top level folder or pages in subfolder.
