@@ -15,17 +15,23 @@ sidebar:
 [Download OS Image ](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit).
 
 
-{% highlight bash linenos %}$ echo "dummy text" {% endhighlight %}
+{% highlight bash linenos %}
+$ echo "dummy text" 
+{% endhighlight %}
 Login to desktop and launch terminal
 
-{% highlight bash linenos %}pi@raspberrypi: $  sudo raspi-config {% endhighlight %}
+{%highlight bash linenos %}
+pi@raspberrypi: $  sudo raspi-config 
+{% endhighlight %}
 
 Enable ssh & vnc
 
 
 #### Change hostname
 
-{% highlight bash linenos %}pi@raspberrypi: $  sudo raspi-config {% endhighlight %}
+{% highlight bash linenos %}
+pi@raspberrypi: $  sudo raspi-config 
+{% endhighlight %}
 Network Options --> Hostname
 
 
@@ -45,7 +51,11 @@ Raspberry Pi's have an onboard status/power/activity LED, this LED can be extend
 on a panel by repurposing a GPIO on the 40pin header.  Select a GPIO, e.g. 25, then add the following lines to
 `/boot/firmware/config.txt`;
 
-{% highlight %}
+
+
+
+
+{% highlight bash linenos %}
 # Activity Light on GPIO 25
 dtparam=act_led_gpio=25
 {% endhighlight %}
