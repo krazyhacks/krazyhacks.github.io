@@ -4,7 +4,7 @@
 
 title: AWS
 layout: single
-permalink: /random_aws/
+permalink: /aws/random_aws/
 sidebar:
    nav: "aws_nav"
 ---
