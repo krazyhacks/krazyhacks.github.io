@@ -12,5 +12,5 @@ sidebar:
 ## Python Flask 
 ### Template section 
 See [Flask](https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask#api-design-principles)
-
+[Great youtube video series](https://www.youtube.com/watch?v=o3bCVqF9gI0&list=PL7yh-TELLS1EyAye_UMnlsTGKxg8uatkM)
 {% highlight bash linenos %}$ echo "dummy text" {% endhighlight %}
