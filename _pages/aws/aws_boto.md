@@ -38,3 +38,14 @@ exceptions = {
 pprint.pprint(exceptions, width=20000)
 {% endhighlight %}
 
+#### Use specific exception in python
+{% highlight python linenos%}
+import boto3
+
+self.client = boto3.client("scheduler", region_name="eu-west0-1")
+
+try:
+    # do something
+except self.client.exceptions.ResourceNotFoundException
+    # print something
+{% endhighlight %}
