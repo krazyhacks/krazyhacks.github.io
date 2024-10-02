@@ -41,6 +41,8 @@ cloud_nav:
         url: /aws/aws_cli/
       - title: "IOT"
         url: /cloud/iot/
+      - title: "Boto"
+        url: /cloud/aws_boto/
 
 jekyll_nav:
   - title: Jekyll
