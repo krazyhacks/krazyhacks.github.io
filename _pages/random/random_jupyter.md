@@ -41,9 +41,16 @@ InteractiveShell.ast_node_interactivity = "all"
 
 ### iPython Magic
 Magic commands in ipython are also available in Jupyter
-#### help
+[Full list of line magic commands](https://ipython.readthedocs.io/en/stable/interactive/magics.html#line-magics)
+[Full list of cell magic commands](https://ipython.readthedocs.io/en/stable/interactive/magics.html#cell-magics)
+#### help %lsmagic
 `%lsmagic` - List magic commands
 `%magic_command?` - Help on specific magic_command
+`%quickref` - Quick reference on common magic commands
+`%history` - History of input 
+`%recall` - Pastes into cell the command previosuly entered as reported by the `%history` command, e.g. `%recal 5` paste the 5th command
+`%recall 1-4` - Paste commands 1 to 4 into cell
+
 #### %env
 Set environment variables
 {% highlight python linenos %}
@@ -55,6 +62,13 @@ Set environment variables
 {% highlight python linenos %}
 env: OMP_NUM_THREADS=4
 {% endhighlight %}
+
+#### %prun
+Run through profiler
+
+#### %pinfo, %pinfo2
+Print detailed info about an object
+
 #### %run
 Execute python code from external `.py` file  AND other jupyter notebooks
 `%run` is not the same as importing a python module
@@ -79,6 +93,10 @@ if __name__ == "__main__":
 {% highlight python linenos %}
 Hello World!
 {% endhighlight %}
+
+#### %debug
+Activates the interactive debugger for error analysis.
+
 #### %who
 List all variables in global scope
 {% highlight python linenos %}
