@@ -205,6 +205,30 @@ print(UserAt['sub'])
 
 {% endhighlight %}
 
+### Who raised Exception
+When adding a `try: Exception:` block, specific exceptions need to be handled. For example, when using botocore/boto3, it's not
+always obvious where the Exception came from.  To find the source of exception raised use the modules `inspect and/or traceback` by adding for example the following;
+
+{% highlight python linenos %}
+import inspect, traceback
+try: 
+     if pagination_token:
+         # print(f"next list of schedules from {pagination_token}")
+         response = self.client.list_schedules(NextToken=pagination_token)
+     else:
+         # print("fetch first list of schedules")
+         response = self.client.list_schedules()
+            
+         pagination_token = response.get('NextToken', None)
+         self.raw_list_of_all_schedules.extend(response.get('Schedules', []))
+         if not pagination_token:
+                break
+            
+         except Exception as e:
+                print(f"Error listing schedules {e}\n\nInspect\n{inspect.trace()}\n\nTraceback\n{traceback.format_exc()}\n\n{traceback.format_stack()}")
+
+{% endhighlight %}
+
 ### Pdb - debugger
 [tutorial](https://data-flair.training/blogs/python-debugger/)
 
