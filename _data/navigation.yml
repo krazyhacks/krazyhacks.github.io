@@ -37,12 +37,8 @@ embedded_nav:
 cloud_nav:
   - title: Cloud
     children:
-      - title: "AWS"
-        url: /aws/aws_cli/
       - title: "IOT"
         url: /cloud/iot/
-      - title: "Boto"
-        url: /cloud/aws_boto/
 
 jekyll_nav:
   - title: Jekyll
@@ -72,6 +68,10 @@ ios:
 aws_nav:
   - title: AWS
     children:
+      - title: "AWS Cli"
+        url: /aws/aws_cli/
+      - title: "Boto"
+        url: /aws/aws_boto/
       - title: "Cloudwatch"
         url: /aws/random_aws/
       - title: "Cognito"
