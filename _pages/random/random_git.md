@@ -600,6 +600,7 @@ If the repo has a `pre-commit` hook, prepend the above command with env var to d
 
 ### Scan Repo for SECRETS
 Prevent commiting code into git repo containing secret KEYS, [See](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/scan-git-repositories-for-sensitive-information-and-security-issues-by-using-git-secrets.html)
+This tool should be integrated with pre-commit hook
 {% highlight bash %}
 $ brew install git-secrets
 {% endhighlight %}
