@@ -598,6 +598,12 @@ $ PRE_COMMIT_ALLOW_NO_CONFIG=1 git rebase -r --root --exec "git commit --ammend 
 
 If the repo has a `pre-commit` hook, prepend the above command with env var to disable pre-commit from running.
 
+### Scan Repo for SECRETS
+Prevent commiting code into git repo containing secret KEYS, [See](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/scan-git-repositories-for-sensitive-information-and-security-issues-by-using-git-secrets.html)
+{% highlight bash %}
+$ brew install git-secrets
+{% endhighlight %}
+
 ### Other GIT resources
 [See](https://dev.to/g_abud/advanced-git-reference-1o9j)
 [command completion](https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-Bash)
