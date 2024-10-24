@@ -77,6 +77,11 @@ openssl x509 -inform pem -in cerfile.cer -noout -text
 openssl x509 -inform der -in cerfile.cer -noout -text  # format produced by Apple developer console
 {% endhighlight %}
 
+#### Fetch certificate from a live site
+{% highlight bash linenos %}
+ openssl s_client -showcerts -servername google.com -connect google.com:443 -showcerts | awk '/BEGIN CERTIFICATE/ && c++,/END CERTIFICATE/'
+{% endhighlight %}
+
 ### Updating SSL Cert in IONOS -> AWS
 Domains in IONOS, with SSL certificates, renew within IONOS.
 
