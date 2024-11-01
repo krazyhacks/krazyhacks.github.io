@@ -94,3 +94,8 @@ Also checkout Lambda, [AWS Batch, Step Function](https://docs.aws.amazon.com/ste
 }
 
 {% endhighlight %}
+
+### Useful links
+* [Access Cloudwatch logs/metrics using boto3](https://medium.com/xebia-engineering/accessing-cloudwatch-metrics-and-insights-from-aws-lambda-1119c40ff80b)
+* [Cloudwatch log/insight examples](https://www.techtarget.com/searchcloudcomputing/tip/Follow-these-examples-to-use-CloudWatch-Logs-Insights)
+* [Boto3 Cloudwatch Tutorial](https://hands-on.cloud/boto3/cloudwatch/)
