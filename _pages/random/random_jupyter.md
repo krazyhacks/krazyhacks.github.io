@@ -200,3 +200,61 @@ from my_file import calc_apply, calc_listcomp,
 ### Advanced options ;-)
 [See](https://www.dataquest.io/blog/advanced-jupyter-notebooks-tutorial/)
 
+### Intellij Setup
+
+Assuming Jupyter notebook plugin installed, Intellij can open notebooks and run cells using the configured `ipython` kernel.
+Either;
+ * Use the `Managed Server` a Jupyter server that is automatically launched by IntelliJ IDEA for the current project. It will be terminated when Intellij IDEA is closed.
+ * Configured server – any Jupyter server that you connect to by specifying its URL and token.
+
+Preference, configure jupyter kernels per virtual environments and launch one instance of jupyter kernel on any port (8888).  Pre-configured kernels can be setup with sepecific environment variables, in particular AWS profile is useful.  Having mulitple kernel configurations, these then present themselves as a dropdown list in Intellij.
+
+Makefile snippet to help setup
+{% highlight bash linenos %}
+
+register-ipyk:
+	env PYTHONPATH=${PYTHONPATH} ${VENV_NAME}/bin/python -m ipykernel install --name="preview-${PYTHON_MODULE}" --display-name="preview-${PYTHON_MODULE}" --sys-prefix
+	jq '. + {env: {"AWS_PROFILE": "preview", "FOOBAR": "preview-humbug"}}' ${VENV_NAME}/share/jupyter/kernels/preview-${PYTHON_MODULE}/kernel.json > ${VENV_NAME}/share/jupyter/kernels/preview-${PYTHON_MODULE}/kernel_temp.json
+	mv ${VENV_NAME}/share/jupyter/kernels/preview-${PYTHON_MODULE}/kernel_temp.json ${VENV_NAME}/share/jupyter/kernels/preview-${PYTHON_MODULE}/kernel.json
+
+	env PYTHONPATH=${PYTHONPATH} ${VENV_NAME}/bin/python -m ipykernel install --name="prod-${PYTHON_MODULE}" --display-name="prod-${PYTHON_MODULE}" --sys-prefix
+	jq '. + {env: {"AWS_PROFILE": "prod", "FOOBAR": "prod-humbug"}}' ${VENV_NAME}/share/jupyter/kernels/prod-${PYTHON_MODULE}/kernel.json > ${VENV_NAME}/share/jupyter/kernels/prod-${PYTHON_MODULE}/kernel_temp.json
+	mv ${VENV_NAME}/share/jupyter/kernels/prod-${PYTHON_MODULE}/kernel_temp.json ${VENV_NAME}/share/jupyter/kernels/prod-${PYTHON_MODULE}/kernel.json
+	make list-ipyk
+# The --sys-prefix will add an entry in virtual-env folder under venv/share/jupyter/kernels/<name>/
+# python
+list-ipyk:
+	env PYTHONPATH=${PYTHONPATH} jupyter kernelspec list
+	env PYTHONPATH=${PYTHONPATH} jupyter notebook list
+stop-ipyk:
+	echo "jupyter notebook stop [port]"
+	env PYTHONPATH=${PYTHONPATH} jupyter notebook stop 8888
+	env PYTHONPATH=${PYTHONPATH} jupyter notebook stop 8889
+	env PYTHONPATH=${PYTHONPATH} jupyter notebook stop 8890
+	make list-ipyk
+delete-ipyk:
+	env PYTHONPATH=${PYTHONPATH} jupyter kernelspec uninstall preview-${PYTHON_MODULE}
+	env PYTHONPATH=${PYTHONPATH} jupyter kernelspec uninstall prod-${PYTHON_MODULE}
+	make list-ipyk
+jupyter:
+	jupyter notebook --no-browser &
+
+# Starting mulitple servers on different ports seems to cause 403 errors,
+# looks like you only need one server running for intellij, and then switch the registered kernel - see register-ipyk above
+# You can launch the equivalent on the command line as follows;
+#	env AWS_PROFILE="preview" env FOOBAR="preview-humbug" jupyter notebook --no-browser --notebook-dir=${VENV_NAME}/share/jupyter/kernels/preview-${PYTHON_MODULE} --port=8888 &
+#	env AWS_PROFILE="prod" env FOOBAR="prod-humbug" jupyter notebook --no-browser --notebook-dir=${VENV_NAME}/share/jupyter/kernels/prod-${PYTHON_MODULE} --port=8889 &
+
+
+restart-ipyk: stop-ipyk jupyter list-ipyk
+
+{% endhighlight %}
+
+#### Manage Jupyter kernels in Intellij
+    *  In Intellij, go to settings -> Languages & Frameworks -> Jupyter -> Servers
+    *  or with jupyter notebook open, menu bar -> Manage Jupyter Servers
+    *  or Top Bar Menu -> Tools -> Add Jupyter Connection
+
+    *  To delete, find server connection in Project Folder View -> righ click -> delete
+
+![Jupyter Notes](/assets/images/JupyterNotesKerenl_Setup_for_Intellij.png "Jupyter Notes")
