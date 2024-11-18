@@ -34,6 +34,12 @@ embedded_nav:
       - title: "CNC"
         url: /embedded/cnc/
 
+android_nav:
+  - title: Android
+    children:
+      - title: "ADB"
+        url: /android/adb/
+
 cloud_nav:
   - title: Cloud
     children:
@@ -82,6 +88,8 @@ aws_nav:
 random_nav:
   - title: Random
     children:
+      - title: "Android"
+        url: /android/adb/
       - title: "Appium"
         url: /random_appium/      
       - title: "AWS"
