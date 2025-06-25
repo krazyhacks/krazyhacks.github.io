@@ -16,7 +16,7 @@ been avoided.
 Update the very last commit using;
    {% highlight bash linenos %} git commit --amend --author"KrazyHacks <hacks.krazy@gmail.com> {% endhighlight %}
 This will update the very last commit with the ``edited`` version, correcting the authors name
-Why would you want to do this? ... if you have multiple accounts and accidentally commited as the wrong user? otherwise noooo idea, but good to know.
+Why would you want to do this? ... if you have multiple accounts and accidentally commited as the wrong user? otherwise noooo idea, but good to know ... [also see below](https://krazyhacks.github.io/random_git/#fix-commit-author-and-email)
 ### Interactive rebase
 Updating author's name for multiple commits using interactive rebase
     * Find the first "good"  commit and use its hash for the rebase cmd
@@ -654,3 +654,4 @@ $ brew install git-secrets
 ### Other GIT resources
 [See](https://dev.to/g_abud/advanced-git-reference-1o9j)
 [command completion](https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-Bash)
+[Copy files from one repo to another with git history](https://blog.billyc.io/how-to-copy-one-or-more-files-from-one-git-repo-to-another-and-keep-the-git-history/)
