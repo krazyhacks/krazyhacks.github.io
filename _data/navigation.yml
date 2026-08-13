@@ -98,6 +98,8 @@ random_nav:
         url: /random_docker/
       - title: "git"
         url: /random_git/
+      - title: "github actions"
+        url: /random_github_actions/
       - title: "Homebrew"
         url: /random_homebrew/
       - title: "Intelij"
