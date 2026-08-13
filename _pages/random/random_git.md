@@ -515,7 +515,7 @@ ${HOME}
 {% endhighlight %}
 
 * Let `.gitconfig` contain all the common settings like aliases
-* Pull in configuration settings by adding an `if` statement depending on CWD, i.e add the following lines to `~/.gitconfig`;
+* Pull in configuration settings by adding an `if` statement depending on CWD, i.e add the following lines to `vi ~/.gitconfig`; Alternatively, run command to edit `git config --global --edit`
 
 {% highlight bash %}
 
@@ -650,6 +650,39 @@ This tool should be integrated with pre-commit hook
 {% highlight bash %}
 $ brew install git-secrets
 {% endhighlight %}
+
+### Maintain updates from github repo in Bitbucket repo.
+This was useful for keep updates from AWS Control Tower AFT where the terraform is hosted in github, but the workplace used Bitbucket.  An empty repo was created in Bitbucket and cloned locally, changed the upstream to github, fetched the code, updated/customised before pushing to Bitbucket.  Any changes in github would need to be either rebased/merged locally before pushing back to Bitbucket.
+
+To keep your Bitbucket repository in sync with updates from the original GitHub repository, you must link them as separate "remotes" on your local machine. Because Bitbucket and GitHub are different platforms, they do not sync automatically without additional configuration. 
+
+1. Link GitHub as the "Upstream" Source 
+Assuming you have already cloned your Bitbucket repo to your computer, you need to tell Git where the original GitHub repo lives. 
+Open your terminal in the local repository folder.
+Add the GitHub repository as a remote named upstream:
+`git remote add upstream https://github.com`
+Verify your remotes:
+`git remote -v`
+You should see origin pointing to Bitbucket and upstream pointing to GitHub. 
+
+2. Pull Updates from GitHub to Bitbucket 
+Whenever there are new changes on GitHub that you want to bring into Bitbucket, run these commands:
+Fetch the latest data from GitHub:
+`git fetch upstream`
+Switch to your main branch (usually main or master):
+`git checkout main`
+Merge the changes from GitHub into your local branch:
+`git merge upstream/main`
+(If you prefer a cleaner history without merge commits, use git rebase upstream/main instead.)
+Push the updates to your Bitbucket repository:
+`git push origin main` 
+
+3. Automated Syncing (Advanced) 
+If you want updates to happen automatically without manual commands, you can use Bitbucket Pipelines. 
+How it works: You create a bitbucket-pipelines.yml file that runs a script on a schedule (e.g., daily) to fetch from GitHub and push to Bitbucket.
+Pre-requisite: This requires setting up SSH keys or Personal Access Tokens in Bitbucket’s "Repository Settings" under "Repository variables" so the pipeline has permission to talk to GitHub. 
+Pro Tip: If you have multiple branches, you can use `git push --mirror origin` after fetching from GitHub to ensure all branches and tags are updated on Bitbucket simultaneously.
+
 
 ### Other GIT resources
 [See](https://dev.to/g_abud/advanced-git-reference-1o9j)
