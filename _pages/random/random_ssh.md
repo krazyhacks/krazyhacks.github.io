@@ -85,6 +85,30 @@ openssl x509 -inform der -in cerfile.cer -noout -text  # format produced by Appl
 ### Updating SSL Cert in IONOS -> AWS
 Domains in IONOS, with SSL certificates, renew within IONOS.
 
+google.com - private key for wildcard ssl certificate
+Manual renewal
+Managed by ionos
+Renews 1st March each year
+
+* open https://google.com
+* Click on padlock view certificate expiry date
+* From IONOS portal, search for `ssl-certificates` click it from search results.
+* From `Manage your certificates` click three dots against domain to be renewed. Select renew certificate NOT reissue - check difference, click `renew`. Download private key `_.<domain_name>_app_private_key.key`. This will also trigger an email for validation.
+* See email, follow instructions to authorise renewal, click link and enter the authorisation code to activate.
+* From IONOS, for domain being updated (*.foo.com wildcard) status should now say `issued`, download new ssl certificates;
+   * `Certificate` :  <domain_name>.app_ssl_certificate.cer
+   * `Intermediate Certificate` : `_.<domain_name>_ssl_certificate_INTERMEDIATE.zip` a zip file containing one or more certs.
+   * `Create & Download .PFX File` : (Never used it, so no notes - but looks like it's windows related).
+* Download Intermediate certificate(s) - this will be a zip file containing multiple cert files.
+
+* Import new key & cert into Prod AWS;
+* AWS -> Certificate Manager in us-east-1
+* Find expired domain in list, click `re-import` 
+* paste ssl cert `<domain_name>.app_ssl_certificate.cer` as BODY
+* paste private key 
+* paste each Intermediate key, one after the other (usually in numerical order) to ensure cert is not flagged as broken chain.
+
+
 Ionos offers to download;
 SSL Certificate - This is pem format
 Create and Download .PFX File - Used for Windows Servers
@@ -95,6 +119,52 @@ AWS Certificate Manager - import cert
 Certificate Body requires PEM-encoded certificate body
 Certificate Private Key requires PEM-encoded private key
 
+#### Sites to help test certs
+[godaddy](https://ssltools.godaddy.com/views/certChecker)
+
+
+#### Extracting from PFX format
+PFX files usually comes with a password, commands to extract key/cert;
+Extracts the private key form a PFX to a PEM file:
+{% highlight bash linenos %}
+openssl pkcs12 -in filename.pfx -nocerts -out key.pem
+
+# pass password on the cmd line
+openssl pkcs12 -in "blablabla.pfx" -out key.key -nodes -passin pass:blablabla   
+
+{% endhighlight %}
+
+Exports the certificate (includes the public key only):
+{% highlight bash linenos %}
+openssl pkcs12 -in filename.pfx -clcerts -nokeys -out cert.pem
+{% endhighlight %}
+
+Removes the password (paraphrase) from the extracted private key (optional):
+{% highlight bash linenos %}
+openssl rsa -in key.pem -out server.key
+{% endhighlight %}
+
+{% highlight bash linenos %}
+# Extracting ca-certs..."
+  openssl pkcs12 -in ${filename}.pfx -nodes -nokeys -cacerts -out ${filename}-ca.crt
+
+# Extracting key file..."
+  openssl pkcs12 -in ${filename}.pfx -nocerts -out ${filename}.key
+
+# Extracting crt..."
+  openssl pkcs12 -in ${filename}.pfx -clcerts -nokeys -out ${filename}.crt
+
+# combine ca-certs and cert files
+  cat  ${filename}.crt ${filename}-ca.crt > ${filename}-full.crt
+
+# Removing passphrase from keyfile"
+  openssl rsa -in ${filename}.key -out ${filename}.key
+
+{% endhighlight %}
+Once you have the cert, key file run CURL command
+{% highlight bash linenos %}
+sudo curl --cert test.crt --key test.key --pass <password_of_cert> -X GET https://server:port/swagger.html
+{% endhighlight %}
 #### Import into AWS
 * Navigate to Certificate Manager (select region)
 * Under the list of certificates, the Type is likely to be "imported"
