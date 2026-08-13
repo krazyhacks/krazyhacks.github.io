@@ -59,3 +59,6 @@ on a panel by repurposing a GPIO on the 40pin header.  Select a GPIO, e.g. 25, t
 # Activity Light on GPIO 25
 dtparam=act_led_gpio=25
 {% endhighlight %}
+
+### Lock down RPi - Encryption
+[Encrypt SD card](https://dzone.com/articles/how-to-secure-your-raspberry-pi)
