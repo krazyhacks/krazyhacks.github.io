@@ -96,3 +96,25 @@ $ asciinema rec demo.cast
 # Convert to gif
 $ agg demo.cast demo.gif
 {% endhighlight %}
+
+#### Edit gif to chop, speed up portions using ffmpeg
+Install ffmpeg
+
+{% highlight bash  linenos %}
+fmpeg -ss 00:00:00 -to 00:01:00 -i Hot_Water_Test.gif Hot_Water_Part1.gif
+ffmpeg -ss 00:01:00 -to 00:35:30 -i Hot_Water_Test.gif -vf "setpts=0.1" Hot_Water_Part2.gif
+ffmpeg -ss 00:35:30 -to 00:36:46 -i Hot_Water_Test.gif Hot_Water_Part3.gif
+ffmpeg -f concat -safe 0 -i list.txt -c copy Hot_Water_Test_Final.gif
+ffmpeg -ss 00:01:00 -to 00:35:30 -i Hot_Water_Test.gif -vf "setpts=0.2" Hot_Water_Part2.gif
+ffmpeg -f concat -safe 0 -i list.txt -c copy Hot_Water_Test_Final.gif
+# Above splits the gif into separate parts based on time
+
+ffmpeg -i Hot_Water_Test.gif -filter_complex "[0:v]fps=15,split=3[v1][v2][v3]; "\
+
+Will need to google this again.
+
+
+{% endhighlight %}
+
+
+
