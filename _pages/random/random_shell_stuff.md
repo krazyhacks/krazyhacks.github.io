@@ -84,3 +84,15 @@ TYPE : ctrl + a then ctrl + \
 
 {% endhighlight %}
 
+#### Recording terminal window
+Record terminal window sessions using [asciinema](https://asciinema.org/) See [docs](https://docs.asciinema.org/manual/cli/installation/) and [agg](https://docs.asciinema.org/manual/agg/usage/)
+{% highlight bash linenos %}
+# Installation
+$ brew install asciinema
+
+# Record 
+$ asciinema rec demo.cast
+
+# Convert to gif
+$ agg demo.cast demo.gif
+{% endhighlight %}
