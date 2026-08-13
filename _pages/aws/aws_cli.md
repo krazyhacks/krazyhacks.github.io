@@ -42,3 +42,9 @@ aws s3api list-objects-v2 --bucket "$bucket" \
 # Find files from certain date to current date
 aws s3api list-objects-v2 --bucket BUCKET_NAME  --query 'Contents[?LastModified>=`YYYY-MM-DD`].Key'
 {% endhighlight %}
+
+### COGNITO
+{% highlight bash linenos %}
+aws cognito-idp admin-update-user-attributes --user-pool-id eu-west-1_xxxx --user-attributes "Name=email,Value=s*****@yahoo.co.uk" --username 3ec5581e-xxxx-xxxx-xxxx-aa5d46945639
+aws cognito-idp admin-update-user-attributes --user-pool-id eu-west-1_xxxx --user-attributes "Name=email_verified,Value=true" --username 3ec5581e-xxxx-xxxx-xxxx-aa5d46945639
+{% endhighlight %}
