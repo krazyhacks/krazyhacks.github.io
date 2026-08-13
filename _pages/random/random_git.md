@@ -633,6 +633,22 @@ $ git remote add origin git@github.com-personal:personal_account_name/repo_name.
 $ git remote -v
 {% endhighlight %}
 
+### NO NEED TO ADJUST URL
+The following method works more seamlessly and avoid tinkering with `urls`
+Within the TOML config for each organisations `.gitconfig_XXXX` file, replace `[core]` with;
+
+{% highlight bash %}
+[user]
+    name = "work_user_name"
+    email = personal_email@company.com
+
+[url "git@github.com-work"]
+    insteadOf = git@github.com 
+{% endhighlight %}
+
+Hence, git will automatically rewrite the url if it contains `git@github.com` with `git@github.com-work` when making ssh/ssl calls.
+This will need to map to the correct entry in `~/.ssh/config` - which defines the correct ssh-key to use.
+
 
 ### Fix commit author and email
 

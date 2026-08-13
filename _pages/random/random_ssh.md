@@ -197,7 +197,7 @@ When prompted, provide the path/filename to create for ssh keys (rather than acc
 Type `ENTER` to set no password
 {% highlight bash linenos %}
 $ mkdir ~/.ssh
-$ ssh-keygen -t rsa -b 4096 -C "me@raspberry.pi.local"
+$ ssh-keygen -t rsa -b 4096 -C "me@raspberry.pi.local Work or Personal"
 
 Generating a public/private rsa key pair.
 Enter the file in which you wish to save they key (i.e., /home/username/.ssh/id_rsa). /home/username/.ssh/raspberrypi_id_rsa
