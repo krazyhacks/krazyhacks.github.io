@@ -4,7 +4,7 @@
 
 title: Raspberry Pi
 layout: single
-permalink: /pi/
+permalink: /random/pi/
 sidebar:
    nav: "embedded_nav"
 ---
