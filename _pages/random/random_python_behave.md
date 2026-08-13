@@ -120,3 +120,4 @@ How to create/structure test modules for reuse
 [See best practices](https://speakerdeck.com/ladylovelace/writing-automated-tests-best-practices-with-python-selenium-behave-and-page-objects?slide=26)
 [BDD Automation panda](https://automationpanda.com/bdd/)
 [Allure history reports](https://github.com/simple-elf/github-allure-history)
+[How to organise feature files](https://cucumber.io/blog/bdd/solving-how-to-organise-feature-files/)
